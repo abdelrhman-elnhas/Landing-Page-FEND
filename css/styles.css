@@ -1,0 +1,288 @@
+/* General Reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+section {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/* Body Styling */
+body {
+	font-family: 'Poppins', sans-serif;
+	color: #333;
+	line-height: 1.6;
+	background-color: #f8f9fa;
+	scroll-behavior: smooth;
+}
+
+/* Header and Navigation */
+header {
+	background-color: #007bff;
+	padding: 1rem;
+	position: sticky;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+}
+
+nav ul {
+	display: flex;
+	justify-content: center;
+	list-style-type: none;
+}
+
+nav ul li {
+	margin: 0 1rem;
+}
+
+nav ul li a {
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 0.5rem;
+	transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+	color: #ffcc00;
+	border-bottom: 2px solid #ffcc00;
+}
+
+/* Hero Section */
+section#home {
+	height: 100vh;
+	background: linear-gradient(45deg, #007bff, #00d4ff);
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 2rem;
+}
+
+section#home h1 {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+section#home p {
+	font-size: 1.2rem;
+	max-width: 600px;
+}
+
+section#home a.btn {
+	margin-top: 2rem;
+	padding: 0.75rem 1.5rem;
+	background-color: #ffcc00;
+	color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: bold;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+
+section#home a.btn:hover {
+	background-color: #ff9800;
+}
+
+/* About Section */
+section#about {
+	padding: 4rem 2rem;
+	background-color: #f1f1f1;
+}
+
+section#about h2 {
+	text-align: center;
+	font-size: 2.5rem;
+	margin-bottom: 1.5rem;
+	color: #007bff;
+}
+
+section#about p,
+section#about ul {
+	max-width: 800px;
+	margin: 0 auto;
+	line-height: 1.8;
+}
+
+section#about ul {
+	list-style-type: disc;
+	padding-left: 1.5rem;
+}
+
+section#about ul li {
+	margin-bottom: 0.75rem;
+}
+
+/* Services Section (Grid) */
+section#services {
+	padding: 4rem 8rem;
+}
+
+section#services h2 {
+	text-align: center;
+	font-size: 2.5rem;
+	margin-bottom: 1.5rem;
+	color: #007bff;
+}
+
+section#services .grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	gap: 2rem;
+}
+
+section#services .tool {
+	background-color: white;
+	padding: 2rem;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	transition: transform 0.3s ease;
+	margin-block: 50px;
+}
+
+section#services .tool h3 {
+	font-size: 1.8rem;
+	margin-bottom: 1rem;
+	color: #007bff;
+}
+
+section#services .tool p {
+	color: #666;
+}
+
+section#services .tool:hover {
+	transform: translateY(-10px);
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Skills Section */
+section#skills {
+	padding: 4rem 2rem;
+	background-color: #f1f1f1;
+}
+
+section#skills h2 {
+	text-align: center;
+	font-size: 2.5rem;
+	margin-bottom: 1.5rem;
+	color: #007bff;
+}
+
+section#skills p {
+	padding-inline: 18rem;
+}
+
+section#skills ul {
+	max-width: 800px;
+	margin: 0 auto;
+	list-style-type: square;
+	padding-left: 1.5rem;
+}
+
+section#skills ul li {
+	margin-bottom: 1rem;
+}
+
+/* references Section */
+section#references {
+	padding: 4rem 8rem;
+	text-align: center;
+	background-color: #007bff;
+	color: white;
+}
+
+section#references h2 {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+}
+
+section#references ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+section#references ul li {
+	margin-bottom: 1rem;
+}
+
+section#references ul li a {
+	color: #ffcc00;
+	text-decoration: none;
+}
+
+section#references ul li a:hover {
+	color: #ff9800;
+}
+
+/* Footer (optional addition for completeness) */
+footer {
+	padding: 1rem;
+	background-color: #333;
+	color: white;
+	text-align: center;
+	font-weight: 500;
+}
+
+footer span a {
+	text-decoration: none;
+	color: #ffcc00;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+	nav ul {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	section#home h1 {
+		font-size: 2.5rem;
+	}
+
+	section#home p {
+		font-size: 1rem;
+	}
+
+	section#services h2,
+	section#about h2,
+	section#skills h2 {
+		font-size: 2rem;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	section#home h1 {
+		font-size: 2rem;
+	}
+
+	section#home p {
+		font-size: 0.9rem;
+	}
+
+	section#about,
+	section#services,
+	section#skills,
+	section#references {
+		padding: 2rem 1rem;
+	}
+
+	section#services .tool {
+		padding: 1rem;
+	}
+
+	section#services h3 {
+		font-size: 1.5rem;
+	}
+}
