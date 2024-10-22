@@ -1,59 +1,56 @@
-// Wait for the DOM to fully load
-document.addEventListener("DOMContentLoaded", () => {
-  // Get references to the main elements
+// After Dom is Loaded do the following
+document.addEventListener("DOMContentLoaded", function () {
   const sections = document.querySelectorAll("section");
-  const navList = document.querySelector("#navbar__list");
+  const navbarList = document.getElementById("navbar-list");
 
-  // Function to build the navigation dynamically
-  const buildNav = () => {
-    sections.forEach((section) => {
-      const navItem = document.createElement("li");
-      const sectionID = section.id;
-      const sectionTitle = section.dataset.nav; // Pulling the data-nav value
+  // Create the navigation menu
+  function RenderNavbar() {
+    for (let i = 0; i < sections.length; i++) {
+      // add a new list item for each defined section
+      const listItem = document.createElement("li");
 
-      // Create anchor tag for the section
-      navItem.innerHTML = `<a href="#${sectionID}" class="menu__link">${sectionTitle}</a>`;
-      navList.appendChild(navItem);
-    });
-  };
+      // Create anchor tag with the section's id
+      const link = document.createElement("a");
+      link.textContent = sections[i].getAttribute("nav-data");
+      link.href = `#${sections[i].id}`;
+      link.className = "menu-link";
 
-  // Function to highlight active section in the viewport
-  const highlightActiveSection = () => {
-    sections.forEach((section) => {
-      const sectionTop = section.getBoundingClientRect().top;
-      const link = document.querySelector(`a[href="#${section.id}"]`);
-
-      if (sectionTop >= -150 && sectionTop <= 150) {
-        // Add active class when the section is in the viewport
-        section.classList.add("active-section");
-        link.classList.add("active");
-      } else {
-        // Remove active class if out of viewport
-        section.classList.remove("active-section");
-        link.classList.remove("active");
-      }
-    });
-  };
-
-  // Function for smooth scrolling
-  const smoothScroll = (event) => {
-    event.preventDefault();
-    if (event.target.nodeName === "A") {
-      const targetID = event.target.getAttribute("href");
-      const targetSection = document.querySelector(targetID);
-
-      // Scroll smoothly to the section
-      targetSection.scrollIntoView({ behavior: "smooth" });
+      // Add link to the listItem then add the listItem to navbar-list
+      listItem.appendChild(link);
+      navbarList.appendChild(listItem);
     }
-  };
+  }
 
-  // Event listener for scrolling to highlight active section
-  window.addEventListener("scroll", highlightActiveSection);
+  // Add 'active-section' class to the section in the current viewport
+  function highlightSection() {
+    for (let i = 0; i < sections.length; i++) {
+      const rect = sections[i].getBoundingClientRect();
 
-  // Event listener for click to smooth scroll to sections
-  navList.addEventListener("click", smoothScroll);
+      // if the section is in the current viewport
+      if (rect.top >= 0 && rect.top <= 300) {
+        sections[i].classList.add("active-section");
+      } else {
+        sections[i].classList.remove("active-section");
+      }
+    }
+  }
 
-  // Initial function calls
-  buildNav();
-  highlightActiveSection(); // To set the first section as active when the page loads
+  function scrollToSection(event) {
+    if (event.target.nodeName === "A") {
+      event.preventDefault();
+      const targetSection = document.querySelector(
+        event.target.getAttribute("href")
+      );
+
+      // Scroll to the targeted section with smooth transition
+      targetSection.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }
+
+  // Call the functions
+  RenderNavbar(); // Create the navbar list items
+  window.addEventListener("scroll", highlightSection); // Highlight the section in the current viewport
+  navbarList.addEventListener("click", scrollToSection); // scroll to the targeted section
 });
