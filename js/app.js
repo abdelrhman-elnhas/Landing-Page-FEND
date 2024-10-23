@@ -23,15 +23,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add 'active-section' class to the section in the current viewport
   function highlightSection() {
-    for (let i = 0; i < sections.length; i++) {
-      const rect = sections[i].getBoundingClientRect();
+    let currentActiveIndex = -1;
 
-      // if the section is in the current viewport
-      if (rect.top >= 0 && rect.top <= 300) {
-        sections[i].classList.add("active-section");
-      } else {
-        sections[i].classList.remove("active-section");
+    // Loop all over all sections to find the one in the current viewport
+    sections.forEach((section, index) => {
+      const rect = section.getBoundingClientRect();
+
+      // If the section is in the viewport, set assign the index to the variable currentActiveIndex
+      if (rect.top >= -150 && rect.top <= window.innerHeight / 2) {
+        currentActiveIndex = index;
       }
+    });
+
+    // Reset the active class on all navLinks
+    const navLinks = document.querySelectorAll(".menu-link");
+    navLinks.forEach((link) => link.classList.remove("active-section"));
+
+    // Add active-section class to the navLink corresponding to the section in the current viewport
+    if (currentActiveIndex !== -1) {
+      navLinks[currentActiveIndex].classList.add("active-section");
     }
   }
 
